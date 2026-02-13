@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story ❤️</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --burgundy: #8b1538;
+            --pink: #ff8fa3;
+            --soft-pink: #ffd6e0;
+            --cream: #fffbf5;
+            --dark: #2d1b1f;
+            --gold: #c9a961;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, var(--cream) 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--pink);
+            border-radius: 50%;
+            opacity: 0;
+            animation: particleFloat 8s infinite ease-in-out;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(50px);
+            }
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 1.5s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 3s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 0.5s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 4s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 1s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: var(--burgundy);
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(139, 21, 56, 0.1);
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: var(--pink);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .date-range {
+            font-size: 1rem;
+            color: var(--burgundy);
+            opacity: 0.8;
+        }
+
+        /* Swiper Container */
+        .swiper-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            animation: slideUp 1.5s ease-out 0.3s backwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .swiper {
+            width: 100%;
+            padding: 50px 20px;
+        }
+
+        .swiper-slide {
+            background: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 
+                0 20px 60px rgba(139, 21, 56, 0.2),
+                0 0 0 1px rgba(139, 21, 56, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 30px 80px rgba(139, 21, 56, 0.25),
+                0 0 0 1px rgba(139, 21, 56, 0.1);
+        }
+
+        .media-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--soft-pink);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .media-container img,
+        .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            background: linear-gradient(135deg, var(--soft-pink), var(--cream));
+        }
+
+        .placeholder-icon {
+            font-size: 60px;
+            opacity: 0.6;
+        }
+
+        .placeholder-text {
+            color: var(--burgundy);
+            font-style: italic;
+            opacity: 0.7;
+        }
+
+        .caption {
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .caption-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: var(--burgundy);
+            margin-bottom: 10px;
+        }
+
+        .caption-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark);
+            opacity: 0.85;
+        }
+
+        /* Swiper Navigation */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--burgundy);
+            background: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(139, 21, 56, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--burgundy);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Swiper Pagination */
+        .swiper-pagination-bullet {
+            background: var(--pink);
+            opacity: 0.4;
+            width: 10px;
+            height: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--burgundy);
+            opacity: 1;
+            width: 30px;
+            border-radius: 5px;
+        }
+
+        /* Footer Message */
+        .footer-message {
+            max-width: 700px;
+            margin: 60px auto 40px;
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(139, 21, 56, 0.15);
+            animation: fadeIn 1.5s ease-out 0.6s backwards;
+        }
+
+        .footer-message p {
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+            line-height: 1.8;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        .footer-message .highlight {
+            color: var(--burgundy);
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 2px solid var(--soft-pink);
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--burgundy);
+        }
+
+        @media (max-width: 768px) {
+            .media-container {
+                height: 300px;
+            }
+
+            .swiper {
+                padding: 40px 10px;
+            }
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                width: 40px;
+                height: 40px;
+            }
+
+            .swiper-button-next:after,
+            .swiper-button-prev:after {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <div class="heart-icon">💖</div>
+            <h1>Our Love Story</h1>
+            <p class="tagline">Every moment with you is my favorite moment</p>
+            <p class="date-range">2024 - Forever</p>
+        </div>
+
+        <div class="swiper-container">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="media-container">
+                            <div class="placeholder">
+                                <div class="placeholder-icon">📷</div>
+                                <div class="placeholder-text">Replace with your photo</div>
+                            </div>
+                            <!-- Replace with: <img src="your-image-1.jpg" alt="Our first date"> -->
+                        </div>
+                        <div class="caption">
+                            <h3 class="caption-title">Our First Date</h3>
+                            <p class="caption-text">The day everything changed. I knew from this moment that you were special.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="media-container">
+                            <div class="placeholder">
+                                <div class="placeholder-icon">🎥</div>
+                                <div class="placeholder-text">Replace with your video</div>
+                            </div>
+                            <!-- Replace with: <video src="your-video-1.mp4" controls></video> -->
+                        </div>
+                        <div class="caption">
+                            <h3 class="caption-title">That Perfect Day</h3>
+                            <p class="caption-text">Laughing until our stomachs hurt. This is what happiness looks like.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="media-container">
+                            <div class="placeholder">
+                                <div class="placeholder-icon">📷</div>
+                                <div class="placeholder-text">Replace with your photo</div>
+                            </div>
+                            <!-- Replace with: <img src="your-image-2.jpg" alt="Adventure together"> -->
+                        </div>
+                        <div class="caption">
+                            <h3 class="caption-title">Adventures Together</h3>
+                            <p class="caption-text">Exploring the world hand in hand. Every journey is better with you.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div class="media-container">
+                            <div class="placeholder">
+                                <div class="placeholder-icon">📷</div>
+                                <div class="placeholder-text">Replace with your photo</div>
+                            </div>
+                            <!-- Replace with: <img src="your-image-3.jpg" alt="Cozy moments"> -->
+                        </div>
+                        <div class="caption">
+                            <h3 class="caption-title">Quiet Moments</h3>
+                            <p class="caption-text">Sometimes the best times are the simple ones - just us, being ourselves.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div class="media-container">
+                            <div class="placeholder">
+                                <div class="placeholder-icon">📷</div>
+                                <div class="placeholder-text">Replace with your photo</div>
+                            </div>
+                            <!-- Replace with: <img src="your-image-4.jpg" alt="Recent memory"> -->
+                        </div>
+                        <div class="caption">
+                            <h3 class="caption-title">Making Memories</h3>
+                            <p class="caption-text">Here's to all the memories we've made and all the ones still to come.</p>
+                        </div>
+                    </div>
+
+                    <!-- Add more slides as needed -->
+                </div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div class="footer-message">
+            <p>Looking back at these moments reminds me how <span class="highlight">incredibly lucky</span> I am to have you in my life.</p>
+            <p>You make every day brighter, every laugh louder, and every moment more meaningful.</p>
+            <p>Thank you for being my partner, my best friend, and the love of my life.</p>
+            <p><span class="highlight">Happy Valentine's Day, my love.</span></p>
+            <div class="signature">Forever Yours ❤️</div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        const swiper = new Swiper('.mySwiper', {
+            effect: 'cards',
+            grabCursor: true,
+            loop: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            
+            // Navigation arrows
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            
+            // Pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            
+            // Autoplay (optional - remove if you don't want auto-advance)
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+            },
+            
+            // Keyboard control
+            keyboard: {
+                enabled: true,
+            },
+            
+            // Smooth transitions
+            speed: 600,
+        });
+
+        // Optional: Add keyboard shortcuts info
+        console.log('💝 Navigation tips:');
+        console.log('- Use arrow keys to navigate');
+        console.log('- Click navigation arrows');
+        console.log('- Swipe on mobile');
+    </script>
+</body>
+</html>
