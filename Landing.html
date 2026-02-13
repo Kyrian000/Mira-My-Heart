@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Love Story ❤️</title>
+    <title>Happy Valentine's Day ❤️</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
             --burgundy: #8b1538;
+            --rose: #ff6b9d;
+            --deep-rose: #c41e3a;
             --pink: #ff8fa3;
             --soft-pink: #ffd6e0;
-            --cream: #fffbf5;
+            --cream: #fff5f7;
+            --warm-cream: #fffbf5;
+            --gold: #d4af37;
+            --charcoal: #2a1a1f;
             --dark: #2d1b1f;
-            --gold: #c9a961;
         }
 
         * {
@@ -23,15 +27,58 @@
         }
 
         body {
-            font-family: 'Lora', serif;
-            background: linear-gradient(135deg, var(--soft-pink) 0%, var(--cream) 100%);
-            color: var(--dark);
-            min-height: 100vh;
+            font-family: 'Cormorant Garamond', serif;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, var(--cream) 50%, var(--warm-cream) 100%);
+            color: var(--charcoal);
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animated background particles */
+        /* Animated background elements */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 25%; animation-delay: 2s; font-size: 15px; }
+        .heart:nth-child(3) { left: 40%; animation-delay: 4s; font-size: 25px; }
+        .heart:nth-child(4) { left: 55%; animation-delay: 1s; font-size: 18px; }
+        .heart:nth-child(5) { left: 70%; animation-delay: 3s; }
+        .heart:nth-child(6) { left: 85%; animation-delay: 5s; font-size: 22px; }
+        .heart:nth-child(7) { left: 15%; animation-delay: 6s; font-size: 16px; }
+        .heart:nth-child(8) { left: 60%; animation-delay: 7s; font-size: 24px; }
+
         .particles {
             position: fixed;
             top: 0;
@@ -58,45 +105,45 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.6;
+                opacity: 0.4;
             }
             90% {
-                opacity: 0.6;
+                opacity: 0.4;
             }
             100% {
                 transform: translateY(-100vh) translateX(50px);
             }
         }
 
-        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .particle:nth-child(2) { left: 20%; animation-delay: 1.5s; }
+        .particle:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 15%; animation-delay: 1.5s; }
         .particle:nth-child(3) { left: 30%; animation-delay: 3s; }
-        .particle:nth-child(4) { left: 40%; animation-delay: 0.5s; }
-        .particle:nth-child(5) { left: 50%; animation-delay: 2s; }
-        .particle:nth-child(6) { left: 60%; animation-delay: 4s; }
-        .particle:nth-child(7) { left: 70%; animation-delay: 1s; }
-        .particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
-        .particle:nth-child(9) { left: 90%; animation-delay: 2.5s; }
+        .particle:nth-child(4) { left: 45%; animation-delay: 0.5s; }
+        .particle:nth-child(5) { left: 60%; animation-delay: 2s; }
+        .particle:nth-child(6) { left: 75%; animation-delay: 4s; }
+        .particle:nth-child(7) { left: 90%; animation-delay: 1s; }
 
+        /* Main Container */
         .container {
             position: relative;
             z-index: 1;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
-            min-height: 100vh;
+            padding: 30px 20px;
         }
 
-        .hero {
+        /* Header Section */
+        .header {
             text-align: center;
             margin-bottom: 50px;
-            animation: fadeIn 1.5s ease-out;
+            animation: fadeInDown 1.2s ease-out;
+            padding: 0 15px;
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInDown {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             to {
                 opacity: 1;
@@ -104,50 +151,177 @@
             }
         }
 
-        .heart-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: pulse 2s ease-in-out infinite;
+        .decorative-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--rose), transparent);
+            margin: 15px auto;
+            animation: shimmer 3s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.15);
-            }
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         h1 {
-            font-family: 'Dancing Script', cursive;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            color: var(--burgundy);
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(139, 21, 56, 0.1);
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            color: var(--deep-rose);
+            margin-bottom: 10px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0px rgba(255, 107, 157, 0.1);
         }
 
-        .tagline {
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.8rem);
+            font-style: italic;
+            color: var(--rose);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Welcome Message Section */
+        .welcome-section {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            animation: fadeInUp 1.2s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: clamp(30px, 5vw, 60px) clamp(25px, 5vw, 50px);
+            box-shadow: 
+                0 20px 60px rgba(196, 30, 58, 0.15),
+                0 0 0 1px rgba(196, 30, 58, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--rose), var(--deep-rose), var(--rose));
+            background-size: 200% 100%;
+            animation: gradientSlide 3s ease infinite;
+        }
+
+        @keyframes gradientSlide {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .message {
             font-size: clamp(1rem, 2.5vw, 1.4rem);
+            line-height: 1.9;
+            color: var(--charcoal);
+            text-align: center;
+        }
+
+        .message p {
+            margin-bottom: 20px;
+        }
+
+        .message strong {
+            color: var(--deep-rose);
+            font-weight: 700;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, transparent 0%, var(--rose) 0%);
+            background-size: 100% 40%;
+            background-repeat: no-repeat;
+            background-position: 0 85%;
+            padding: 0 4px;
+            animation: highlightReveal 1.5s ease-out 1.5s backwards;
+        }
+
+        @keyframes highlightReveal {
+            from {
+                background-size: 0% 40%;
+            }
+            to {
+                background-size: 100% 40%;
+            }
+        }
+
+        .big-heart {
+            font-size: clamp(50px, 12vw, 80px);
+            text-align: center;
+            margin: 25px 0;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 4px 8px rgba(196, 30, 58, 0.3));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10%, 30% {
+                transform: scale(1.1);
+            }
+            20%, 40% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Memories Section */
+        .memories-section {
+            margin: 60px auto;
+            max-width: 900px;
+        }
+
+        .section-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            color: var(--burgundy);
+            text-align: center;
+            margin-bottom: 15px;
+            animation: fadeIn 1.5s ease-out 0.5s backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
             color: var(--pink);
             font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .date-range {
-            font-size: 1rem;
-            color: var(--burgundy);
-            opacity: 0.8;
+            margin-bottom: 40px;
         }
 
         /* Swiper Container */
         .swiper-container {
             width: 100%;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            animation: slideUp 1.5s ease-out 0.3s backwards;
+            animation: slideUp 1.5s ease-out 0.6s backwards;
+            padding: 0 10px;
         }
 
         @keyframes slideUp {
@@ -168,8 +342,8 @@
 
         .swiper-slide {
             background: white;
-            border-radius: 25px;
-            padding: 20px;
+            border-radius: 20px;
+            padding: 15px;
             box-shadow: 
                 0 20px 60px rgba(139, 21, 56, 0.2),
                 0 0 0 1px rgba(139, 21, 56, 0.05);
@@ -185,11 +359,11 @@
 
         .media-container {
             width: 100%;
-            height: 400px;
+            height: clamp(250px, 50vw, 400px);
             border-radius: 15px;
             overflow: hidden;
             background: var(--soft-pink);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
         }
 
@@ -207,12 +381,12 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             background: linear-gradient(135deg, var(--soft-pink), var(--cream));
         }
 
         .placeholder-icon {
-            font-size: 60px;
+            font-size: clamp(40px, 8vw, 60px);
             opacity: 0.6;
         }
 
@@ -220,6 +394,9 @@
             color: var(--burgundy);
             font-style: italic;
             opacity: 0.7;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            padding: 0 20px;
+            text-align: center;
         }
 
         .caption {
@@ -229,13 +406,13 @@
 
         .caption-title {
             font-family: 'Dancing Script', cursive;
-            font-size: 1.8rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             color: var(--burgundy);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .caption-text {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             line-height: 1.6;
             color: var(--dark);
             opacity: 0.85;
@@ -246,8 +423,8 @@
         .swiper-button-prev {
             color: var(--burgundy);
             background: white;
-            width: 50px;
-            height: 50px;
+            width: clamp(40px, 8vw, 50px);
+            height: clamp(40px, 8vw, 50px);
             border-radius: 50%;
             box-shadow: 0 4px 15px rgba(139, 21, 56, 0.2);
             transition: all 0.3s ease;
@@ -255,7 +432,7 @@
 
         .swiper-button-next:after,
         .swiper-button-prev:after {
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
         }
 
         .swiper-button-next:hover,
@@ -281,27 +458,31 @@
             border-radius: 5px;
         }
 
-        /* Footer Message */
-        .footer-message {
-            max-width: 700px;
+        /* Final Message Section */
+        .final-message {
+            max-width: 800px;
             margin: 60px auto 40px;
-            text-align: center;
-            padding: 40px 30px;
+            padding: 0 15px;
+        }
+
+        .signature-card {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(139, 21, 56, 0.15);
-            animation: fadeIn 1.5s ease-out 0.6s backwards;
+            padding: clamp(30px, 5vw, 50px) clamp(25px, 5vw, 45px);
+            box-shadow: 0 15px 50px rgba(196, 30, 58, 0.15);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out 0.8s backwards;
         }
 
-        .footer-message p {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        .signature-card p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
             line-height: 1.8;
-            color: var(--dark);
-            margin-bottom: 20px;
+            color: var(--charcoal);
+            margin-bottom: 15px;
         }
 
-        .footer-message .highlight {
-            color: var(--burgundy);
+        .signature-card .highlight-text {
+            color: var(--deep-rose);
             font-weight: 600;
         }
 
@@ -309,14 +490,60 @@
             margin-top: 30px;
             padding-top: 25px;
             border-top: 2px solid var(--soft-pink);
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            color: var(--burgundy);
         }
 
+        .signature-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-style: italic;
+            color: var(--deep-rose);
+            margin-bottom: 8px;
+        }
+
+        .date {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            color: var(--rose);
+            margin-top: 5px;
+        }
+
+        /* Corner decorations */
+        .corner-decor {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.08;
+        }
+
+        .corner-decor.top-left {
+            top: 15px;
+            left: 15px;
+            border-top: 3px solid var(--deep-rose);
+            border-left: 3px solid var(--deep-rose);
+        }
+
+        .corner-decor.bottom-right {
+            bottom: 15px;
+            right: 15px;
+            border-bottom: 3px solid var(--deep-rose);
+            border-right: 3px solid var(--deep-rose);
+        }
+
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
-            .media-container {
-                height: 300px;
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header {
+                margin-bottom: 35px;
+            }
+
+            .welcome-section {
+                margin-bottom: 40px;
+            }
+
+            .memories-section {
+                margin: 40px auto;
             }
 
             .swiper {
@@ -325,18 +552,56 @@
 
             .swiper-button-next,
             .swiper-button-prev {
+                display: none; /* Hide on very small screens, swipe only */
+            }
+
+            .final-message {
+                margin: 40px auto 30px;
+            }
+
+            .corner-decor {
                 width: 40px;
                 height: 40px;
             }
 
-            .swiper-button-next:after,
-            .swiper-button-prev:after {
-                font-size: 16px;
+            .corner-decor.top-left {
+                top: 10px;
+                left: 10px;
+            }
+
+            .corner-decor.bottom-right {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                padding: 30px 25px;
+            }
+        }
+
+        /* Large screens */
+        @media (min-width: 1400px) {
+            .container {
+                padding: 50px 40px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Background animations -->
+    <div class="floating-hearts">
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+        <div class="heart">💖</div>
+        <div class="heart">❤️</div>
+        <div class="heart">💕</div>
+    </div>
+
     <div class="particles">
         <div class="particle"></div>
         <div class="particle"></div>
@@ -345,115 +610,148 @@
         <div class="particle"></div>
         <div class="particle"></div>
         <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
     </div>
 
+    <!-- Main Content -->
     <div class="container">
-        <div class="hero">
-            <div class="heart-icon">💖</div>
-            <h1>Our Love Story</h1>
-            <p class="tagline">Every moment with you is my favorite moment</p>
-            <p class="date-range">2024 - Forever</p>
+        <!-- Header -->
+        <div class="header">
+            <div class="decorative-line"></div>
+            <h1>Happy Valentine's Day</h1>
+            <p class="subtitle">To the most amazing person in my life</p>
+            <div class="decorative-line"></div>
         </div>
 
-        <div class="swiper-container">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                        <div class="media-container">
-                            <div class="placeholder">
-                                <div class="placeholder-icon">📷</div>
-                                <div class="placeholder-text">Replace with your photo</div>
-                            </div>
-                            <!-- Replace with: <img src="your-image-1.jpg" alt="Our first date"> -->
-                        </div>
-                        <div class="caption">
-                            <h3 class="caption-title">Our First Date</h3>
-                            <p class="caption-text">The day everything changed. I knew from this moment that you were special.</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                        <div class="media-container">
-                            <div class="placeholder">
-                                <div class="placeholder-icon">🎥</div>
-                                <div class="placeholder-text">Replace with your video</div>
-                            </div>
-                            <!-- Replace with: <video src="your-video-1.mp4" controls></video> -->
-                        </div>
-                        <div class="caption">
-                            <h3 class="caption-title">That Perfect Day</h3>
-                            <p class="caption-text">Laughing until our stomachs hurt. This is what happiness looks like.</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                        <div class="media-container">
-                            <div class="placeholder">
-                                <div class="placeholder-icon">📷</div>
-                                <div class="placeholder-text">Replace with your photo</div>
-                            </div>
-                            <!-- Replace with: <img src="your-image-2.jpg" alt="Adventure together"> -->
-                        </div>
-                        <div class="caption">
-                            <h3 class="caption-title">Adventures Together</h3>
-                            <p class="caption-text">Exploring the world hand in hand. Every journey is better with you.</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                        <div class="media-container">
-                            <div class="placeholder">
-                                <div class="placeholder-icon">📷</div>
-                                <div class="placeholder-text">Replace with your photo</div>
-                            </div>
-                            <!-- Replace with: <img src="your-image-3.jpg" alt="Cozy moments"> -->
-                        </div>
-                        <div class="caption">
-                            <h3 class="caption-title">Quiet Moments</h3>
-                            <p class="caption-text">Sometimes the best times are the simple ones - just us, being ourselves.</p>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide">
-                        <div class="media-container">
-                            <div class="placeholder">
-                                <div class="placeholder-icon">📷</div>
-                                <div class="placeholder-text">Replace with your photo</div>
-                            </div>
-                            <!-- Replace with: <img src="your-image-4.jpg" alt="Recent memory"> -->
-                        </div>
-                        <div class="caption">
-                            <h3 class="caption-title">Making Memories</h3>
-                            <p class="caption-text">Here's to all the memories we've made and all the ones still to come.</p>
-                        </div>
-                    </div>
-
-                    <!-- Add more slides as needed -->
+        <!-- Welcome Message -->
+        <section class="welcome-section">
+            <div class="main-content">
+                <div class="corner-decor top-left"></div>
+                <div class="corner-decor bottom-right"></div>
+                
+                <div class="message">
+                    <p>My Dearest Mira,</p>
+                    <p>From the moment you walked into my life, everything changed. You brought light to my darkest days and joy to every moment we share together.</p>
+                    
+                    <p>Every laugh, every conversation, every stolen glance—they all remind me how incredibly <span class="highlight">lucky I am to have you</span> by my side.</p>
+                    
+                    <div class="big-heart">❤️</div>
+                    
+                    <p>You're not just my Valentine—you're my <strong>best friend</strong>, my <strong>inspiration</strong>, and my <strong>favorite person</strong> in the entire world.</p>
                 </div>
-                
-                <!-- Navigation buttons -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                
-                <!-- Pagination -->
-                <div class="swiper-pagination"></div>
             </div>
-        </div>
+        </section>
 
-        <div class="footer-message">
-            <p>Looking back at these moments reminds me how <span class="highlight">incredibly lucky</span> I am to have you in my life.</p>
-            <p>You make every day brighter, every laugh louder, and every moment more meaningful.</p>
-            <p>Thank you for being my partner, my best friend, and the love of my life.</p>
-            <p><span class="highlight">Happy Valentine's Day, my love.</span></p>
-            <div class="signature">Forever Yours ❤️</div>
-        </div>
+        <!-- Memories Section -->
+        <section class="memories-section">
+            <h2 class="section-title">Our Beautiful Moments</h2>
+            <p class="section-subtitle">Every memory with you is a treasure</p>
+
+            <div class="swiper-container">
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide">
+                            <div class="media-container">
+                                <div class="placeholder">
+                                    <div class="placeholder-icon">📷</div>
+                                    <div class="placeholder-text">Replace with your photo</div>
+                                </div>
+                                <!-- Replace with: <img src="your-image-1.jpg" alt="Our first date"> -->
+                            </div>
+                            <div class="caption">
+                                <h3 class="caption-title">Our First Date</h3>
+                                <p class="caption-text">The day everything changed. I knew from this moment that you were special.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide">
+                            <div class="media-container">
+                                <div class="placeholder">
+                                    <div class="placeholder-icon">🎥</div>
+                                    <div class="placeholder-text">Replace with your video</div>
+                                </div>
+                                <!-- Replace with: <video src="your-video-1.mp4" controls></video> -->
+                            </div>
+                            <div class="caption">
+                                <h3 class="caption-title">That Perfect Day</h3>
+                                <p class="caption-text">Laughing until our stomachs hurt. This is what happiness looks like.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide">
+                            <div class="media-container">
+                                <div class="placeholder">
+                                    <div class="placeholder-icon">📷</div>
+                                    <div class="placeholder-text">Replace with your photo</div>
+                                </div>
+                                <!-- Replace with: <img src="your-image-2.jpg" alt="Adventure together"> -->
+                            </div>
+                            <div class="caption">
+                                <h3 class="caption-title">Adventures Together</h3>
+                                <p class="caption-text">Exploring the world hand in hand. Every journey is better with you.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide">
+                            <div class="media-container">
+                                <div class="placeholder">
+                                    <div class="placeholder-icon">📷</div>
+                                    <div class="placeholder-text">Replace with your photo</div>
+                                </div>
+                                <!-- Replace with: <img src="your-image-3.jpg" alt="Cozy moments"> -->
+                            </div>
+                            <div class="caption">
+                                <h3 class="caption-title">Quiet Moments</h3>
+                                <p class="caption-text">Sometimes the best times are the simple ones - just us, being ourselves.</p>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide">
+                            <div class="media-container">
+                                <div class="placeholder">
+                                    <div class="placeholder-icon">📷</div>
+                                    <div class="placeholder-text">Replace with your photo</div>
+                                </div>
+                                <!-- Replace with: <img src="your-image-4.jpg" alt="Recent memory"> -->
+                            </div>
+                            <div class="caption">
+                                <h3 class="caption-title">Making Memories</h3>
+                                <p class="caption-text">Here's to all the memories we've made and all the ones still to come.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    
+                    <!-- Pagination -->
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Message -->
+        <section class="final-message">
+            <div class="signature-card">
+                <p>Looking back at these moments reminds me how <span class="highlight-text">incredibly blessed</span> I am to have you in my life.</p>
+                
+                <p>You make every day brighter, every laugh louder, and every moment more meaningful.</p>
+                
+                <p>Thank you for being my partner, my best friend, and the love of my life.</p>
+                
+                <p>Here's to us, to our memories, and to all the beautiful moments yet to come.</p>
+
+                <div class="signature">
+                    <div class="signature-text">Forever Yours, </div>
+                    <div class="date">Bueze</div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -462,7 +760,7 @@
         const swiper = new Swiper('.mySwiper', {
             effect: 'cards',
             grabCursor: true,
-            loop: true,
+            loop: false,
             centeredSlides: true,
             slidesPerView: 'auto',
             
@@ -479,7 +777,7 @@
                 dynamicBullets: true,
             },
             
-            // Autoplay (optional - remove if you don't want auto-advance)
+            // Autoplay
             autoplay: {
                 delay: 5000,
                 disableOnInteraction: false,
@@ -493,13 +791,32 @@
             
             // Smooth transitions
             speed: 600,
+
+            // Responsive breakpoints
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 10
+                },
+                768: {
+                    slidesPerView: 1,
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 1,
+                    spaceBetween: 30
+                }
+            }
         });
 
-        // Optional: Add keyboard shortcuts info
-        console.log('💝 Navigation tips:');
-        console.log('- Use arrow keys to navigate');
-        console.log('- Click navigation arrows');
-        console.log('- Swipe on mobile');
+        // Optional: Pause autoplay when page is not visible
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                swiper.autoplay.stop();
+            } else {
+                swiper.autoplay.start();
+            }
+        });
     </script>
 </body>
 </html>
