@@ -2,11 +2,448 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kikithelad</title>
-    <link rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>A Question For You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 182, 193, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 24px;
+            padding: 48px 32px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            position: relative;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .subtext {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            position: relative;
+            min-height: 120px;
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 16px 48px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            max-width: 280px;
+            touch-action: manipulation;
+        }
+
+        .yes-btn {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .yes-btn:active {
+            transform: scale(0.98);
+            background: #333;
+        }
+
+        .no-btn {
+            background: #f5f5f5;
+            color: #666;
+            font-size: 14px;
+            padding: 12px 32px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.15s ease;
+        }
+
+        .no-btn:active {
+            transform: translateX(-50%) scale(0.98);
+            background: #ebebeb;
+        }
+
+        /* Success state */
+        .success-animation {
+            display: none;
+        }
+
+        .success-animation.show {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .success-emoji {
+            font-size: 80px;
+            margin-bottom: 24px;
+        }
+
+        .success-text {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .success-subtext {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .loading-dots span {
+            width: 4px;
+            height: 4px;
+            background: #666;
+            border-radius: 50%;
+            animation: loadingDot 1.4s ease-in-out infinite;
+        }
+
+        .loading-dots span:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes loadingDot {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
+        }
+
+        /* iPhone specific optimizations */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+        }
+
+        /* Small phones (iPhone SE, iPhone 12/13 mini) */
+        @media (max-width: 375px) {
+            .question-card {
+                padding: 40px 24px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .emoji {
+                font-size: 56px;
+            }
+
+            .subtext {
+                font-size: 15px;
+            }
+
+            button {
+                font-size: 15px;
+                padding: 14px 40px;
+            }
+        }
+
+        /* Standard phones (iPhone 12/13/14/15) */
+        @media (min-width: 376px) and (max-width: 428px) {
+            .question-card {
+                padding: 48px 32px;
+            }
+        }
+
+        /* Larger phones (iPhone Pro Max) */
+        @media (min-width: 429px) {
+            .question-card {
+                padding: 56px 40px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .emoji {
+                font-size: 72px;
+            }
+        }
+
+        /* Landscape mode */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .container {
+                padding: 16px;
+            }
+
+            .question-card {
+                padding: 32px 28px;
+            }
+
+            .emoji {
+                font-size: 48px;
+                margin-bottom: 16px;
+            }
+
+            h1 {
+                font-size: 22px;
+                margin-bottom: 8px;
+            }
+
+            .subtext {
+                font-size: 14px;
+                margin-bottom: 24px;
+            }
+
+            .buttons {
+                min-height: 90px;
+            }
+
+            button {
+                padding: 12px 40px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Patroling</h1>
+    <div class="container">
+        <div class="question-card">
+            <div id="questionSection">
+                <div class="emoji">💐</div>
+                <h1>Will You Be My Valentine?</h1>
+                <p class="subtext">I have something to show you</p>
+                
+                <div class="buttons">
+                    <button class="yes-btn" onclick="sayYes()">Yes</button>
+                    <button class="no-btn" id="noBtn" onclick="moveButton(event)">No</button>
+                </div>
+            </div>
+
+            <div id="successSection" class="success-animation">
+                <div class="success-emoji">💕</div>
+                <div class="success-text">Perfect</div>
+                <p class="success-subtext">
+                    Loading
+                    <span class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let moveCount = 0;
+        const noBtn = document.getElementById('noBtn');
+
+        function moveButton(event) {
+            event.preventDefault();
+            moveCount++;
+            
+            const card = document.querySelector('.question-card');
+            const buttonsContainer = document.querySelector('.buttons');
+            const cardRect = card.getBoundingClientRect();
+            const containerRect = buttonsContainer.getBoundingClientRect();
+            const btnRect = noBtn.getBoundingClientRect();
+            
+            // Calculate safe movement area
+            const padding = 20;
+            const maxX = containerRect.width - btnRect.width - padding;
+            const maxY = containerRect.height - btnRect.height - padding;
+            
+            // Generate random position
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            
+            // Apply new position
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.transform = 'none';
+            
+            // Change button text
+            if (moveCount === 3) {
+                noBtn.textContent = "Sure?";
+            } else if (moveCount === 5) {
+                noBtn.textContent = "Really?";
+            } else if (moveCount === 7) {
+                noBtn.textContent = "Think again";
+            }
+            
+            // Make Yes button slightly bigger
+            const yesBtn = document.querySelector('.yes-btn');
+            const currentScale = 1 + (moveCount * 0.03);
+            yesBtn.style.transform = `scale(${Math.min(currentScale, 1.15)})`;
+        }
+
+        function sayYes() {
+            // Hide question section
+            document.getElementById('questionSection').style.display = 'none';
+            
+            // Show success animation
+            const successSection = document.getElementById('successSection');
+            successSection.classList.add('show');
+            
+            // Simple fade effect for confetti
+            createMinimalConfetti();
+            
+            // Redirect after 2.5 seconds
+            setTimeout(() => {
+                window.location.href = 'valentine-combined.html';
+            }, 2500);
+        }
+
+        function createMinimalConfetti() {
+            const hearts = ['❤️', '💕'];
+            
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'fixed';
+                heart.style.left = '50%';
+                heart.style.top = '50%';
+                heart.style.fontSize = '24px';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+                
+                document.body.appendChild(heart);
+                
+                const angle = (Math.PI * 2 * i) / 12;
+                const distance = 200;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                heart.animate([
+                    {
+                        transform: 'translate(-50%, -50%) scale(0)',
+                        opacity: 1
+                    },
+                    {
+                        transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(1)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: 1200,
+                    easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+                }).onfinish = () => heart.remove();
+            }
+        }
+
+        // Prevent default touch behavior
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveButton(e);
+        }, { passive: false });
+
+        // Prevent double-tap zoom on iOS
+        let lastTap = 0;
+        document.addEventListener('touchend', (e) => {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 500 && tapLength > 0) {
+                e.preventDefault();
+            }
+            lastTap = currentTime;
+        }, { passive: false });
+    </script>
 </body>
 </html>
